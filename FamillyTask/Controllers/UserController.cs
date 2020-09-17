@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FamillyTask.DAL.Interface;
 using FamillyTask.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -19,10 +20,11 @@ namespace FamillyTask.Controllers
     public class UserController : ControllerBase
     {
         private IConfiguration _configuration;
-
-        public UserController(IConfiguration configuration)
+        private IUsersService _service;
+        public UserController(IConfiguration configuration, IUsersService service)
         {
             _configuration = configuration;
+            _service = service;
         }
 
         [AllowAnonymous]
@@ -34,7 +36,16 @@ namespace FamillyTask.Controllers
 
             if (model != null)
             {
-                UserModel resultModel = new UserModel();
+                Users DbModel =  _service.CheckLogin(model.Login, model.Passwd);
+
+                UserModel resultModel = new UserModel()
+                {
+                    Id = DbModel.Id,
+                    DateNaissance = DbModel.DateNaissance,
+                    Login = DbModel.Login,
+                    Nom = DbModel.Nom,
+                    Prenom = DbModel.Prenom
+                };
 
                 resultModel.Token = this.CreateToken(model);
 
