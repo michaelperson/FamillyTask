@@ -27,6 +27,7 @@ namespace FamillyTask.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [Route("/Login")]
         public IActionResult Login([FromBody] LoginModel model)
         {
             IActionResult result = this.Unauthorized();
