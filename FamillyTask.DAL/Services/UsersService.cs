@@ -1,4 +1,5 @@
-﻿using FamillyTask.DAL.Repositories;
+﻿using FamillyTask.DAL.Interface;
+using FamillyTask.DAL.Repositories;
 using FamillyTask.Models;
 using System;
 using System.Collections.Generic;
