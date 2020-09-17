@@ -38,7 +38,7 @@ namespace FamillyTask.Controllers
             if (model != null)
             {
                 Users DbModel =  _service.CheckLogin(model.Login, model.Passwd);
-
+                if (DbModel is null) return BadRequest();
                 UserModel resultModel = new UserModel()
                 {
                     Id = DbModel.Id,
@@ -50,7 +50,7 @@ namespace FamillyTask.Controllers
 
                 resultModel.Token = this.CreateToken(resultModel);
 
-                result = this.Ok(resultModel);
+                result =  Ok(resultModel);
             }
 
             return result;
