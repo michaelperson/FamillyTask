@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FamillyTask.DAL.Services
 {
-    public class UsersService : BaseService<Users , int>
+    public class UsersService : BaseService<Users, int>, IUsersService
     {
         UsersReposiotry repo;
         public UsersService(string ConnectionString) : base(ConnectionString)
