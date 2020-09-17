@@ -9,6 +9,8 @@ using FamillyTask.DAL.Services;
 using FamillyTask.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace FamillyTask.Controllers
 {
@@ -59,6 +61,7 @@ namespace FamillyTask.Controllers
         [ProducesResponseType(typeof(MembreModel), 200)]
         [ProducesResponseType(404)]
         [HttpGet]
+        [Route("/{id}")]
         public IActionResult GetOne(int id)
         {
             Membre m = Service.GetOne(id);
@@ -122,6 +125,28 @@ namespace FamillyTask.Controllers
             if (!Service.Update(toUpdate))
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, toUpdate);
+            }
+            else
+            {
+                return NoContent();
+            }
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(typeof(int), 500)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("/{id}")]
+        public IActionResult Delete(int id)
+        {
+            Membre toDelete = new Membre()
+            {
+                Id = id, 
+            };
+
+            if (!Service.Delete(toDelete))
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, id);
             }
             else
             {
