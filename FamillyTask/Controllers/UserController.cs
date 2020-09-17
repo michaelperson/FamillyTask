@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using FamillyTask.DAL.Interface;
@@ -47,7 +48,7 @@ namespace FamillyTask.Controllers
                     Prenom = DbModel.Prenom
                 };
 
-                resultModel.Token = this.CreateToken(model);
+                resultModel.Token = this.CreateToken(resultModel);
 
                 result = this.Ok(resultModel);
             }
@@ -56,13 +57,24 @@ namespace FamillyTask.Controllers
         }
 
 
-        private string CreateToken(LoginModel model)
+        private string CreateToken(UserModel model)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["jwt:key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[]
+           {
+                new Claim("UserName", model.Login), 
+                new Claim("FirstName",model.Prenom),
+                new Claim("LastName",model.Nom),
+                new Claim("Id",model.Id.ToString())
+            });
+
+
+
             var token = new JwtSecurityToken(this._configuration["jwt:issuer"],
                                              this._configuration["jwt:issuer"],
+                                             claims: claimsIdentity.Claims,
                                              expires: DateTime.Now.AddMinutes(30),
                                              signingCredentials: credentials);
 
