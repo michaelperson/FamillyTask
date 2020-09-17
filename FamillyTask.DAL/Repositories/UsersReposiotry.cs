@@ -36,7 +36,7 @@ namespace FamillyTask.DAL.Repositories
 
         public  Users GetByLoginPass(Users partialUser)
         {
-            return base.ExecuteReaderWithParameters("Select * from Users Where Login=@Login and Password=@Passwd", System.Data.CommandType.Text, partialUser).FirstOrDefault();
+            return base.ExecuteReaderWithParameters("Select * from Users Where Login=@Login and Password=@Password", System.Data.CommandType.Text, partialUser).FirstOrDefault();
         }
 
         public override bool Update(Users obj)
