@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FamillyTask</name>
+    </assembly>
+    <members>
+        <member name="M:FamillyTask.Controllers.MembreController.Get">
+            <summary>
+            Récupération de tous les Membres
+            </summary>
+            <returns>Une collection de <see cref="T:FamillyTask.Models.Membre"/></returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.MembreController.GetOne(System.Int32)">
+            <summary>
+            Récupération d'un membre à partir de son ID
+            </summary>
+            <param name="id">Identifiant unique du membre</param>
+            <returns>Le <see cref="T:FamillyTask.Models.Membre"/> ou Null</returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.MembreController.Post(FamillyTask.Models.MembreModel)">
+            <summary>
+            Insertion d'un membre
+            </summary>
+            <param name="m">Le <see cref="T:FamillyTask.Models.MembreModel"/> a inserer</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.MembreController.Put(FamillyTask.Models.Membre)">
+            <summary>
+            Mise à jour d'un membre
+            </summary>
+            <param name="m">Le <see cref="T:FamillyTask.Models.MembreModel"/> a mettre à jour</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.MembreController.Get(System.Int32)">
+            <summary>
+            Récupération des tâches d'un membre
+            </summary>
+            <param name="idMembre">L'id du Membre</param>
+            <returns>Un objet de Type <see cref="T:FamillyTask.Models.TacheModel"/></returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.TacheController.Get">
+            <summary>
+            Récupération de tous les tâches
+            </summary>
+            <returns>Une collection de <see cref="T:FamillyTask.Models.TacheModel"/></returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.TacheController.GetOne(System.Int32)">
+            <summary>
+            Récupération d'une Tâche à partir de son ID
+            </summary>
+            <param name="id">Identifiant unique de la Tâche</param>
+            <returns>La <see cref="T:FamillyTask.Models.TacheModel"/> ou Null</returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.TacheController.Post(FamillyTask.Models.TacheModel)">
+            <summary>
+            Insertion d'une tâche
+            </summary>
+            <param name="m">La <see cref="T:FamillyTask.Models.TacheModel"/> a inserer</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.TacheController.Put(FamillyTask.Models.TacheModel)">
+            <summary>
+            Mise à jour d'une tâche
+            </summary>
+            <param name="m">La <see cref="T:FamillyTask.Models.TacheModel"/> a mettre à jour</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:FamillyTask.Controllers.TacheController.Post(System.Int32,System.Int32)">
+            <summary>
+            Permet d'attribuer une tâche à un membre
+            </summary>
+            <param name="idTache">L'id de la tâche</param>
+            <param name="idMembre">L'id du membre.</param>
+            <returns>IActionResult</returns>
+        </member>
+    </members>
+</doc>
