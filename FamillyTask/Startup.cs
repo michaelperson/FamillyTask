@@ -37,7 +37,7 @@ namespace FamillyTask
             /*Injection de dépendance*/
             services.Add(new ServiceDescriptor(typeof(IMembreService), new MembreService(Cnstr)));
             services.Add(new ServiceDescriptor(typeof(ITacheService), new TacheService(Cnstr)));
-
+            services.Add(new ServiceDescriptor(typeof(IUsersService), new UsersService(Cnstr)));
             /*Swagger*/
             services.AddSwaggerGenNewtonsoftSupport();
             services.AddSwaggerGen(swagger =>
