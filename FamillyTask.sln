@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamillyTask", "FamillyTask\FamillyTask.csproj", "{307BBCED-D712-4983-A893-4F2D7650FB1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamillyTask.DAL", "..\FamillyTaskFramework\FamillyTask.DAL\FamillyTask.DAL.csproj", "{F68A0A63-1B60-4A5A-ADE8-17C51BA70776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamillyTask.DAL", "FamillyTask.DAL\FamillyTask.DAL.csproj", "{5AC6F25F-C570-45DF-9E97-D20F348FCC19}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamillyTask.Models", "..\FamillyTaskFramework\FamillyTask.Models\FamillyTask.Models.csproj", "{BEAD5446-7F4F-47BE-8004-AE039F392F95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamillyTask.Models", "FamillyTask.Models\FamillyTask.Models.csproj", "{92FCF514-85EC-45F9-AEAA-01F2B9DA2115}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FamillyTaskDB", "..\FamillyTaskFramework\FamillyTaskDB\FamillyTaskDB.sqlproj", "{188FE002-AFB9-4808-BB8F-7EE6B26E374F}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FamillyTaskDB", "FamillyTaskDB\FamillyTaskDB.sqlproj", "{188FE002-AFB9-4808-BB8F-7EE6B26E374F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +21,14 @@ Global
 		{307BBCED-D712-4983-A893-4F2D7650FB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{307BBCED-D712-4983-A893-4F2D7650FB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{307BBCED-D712-4983-A893-4F2D7650FB1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F68A0A63-1B60-4A5A-ADE8-17C51BA70776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F68A0A63-1B60-4A5A-ADE8-17C51BA70776}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F68A0A63-1B60-4A5A-ADE8-17C51BA70776}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F68A0A63-1B60-4A5A-ADE8-17C51BA70776}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BEAD5446-7F4F-47BE-8004-AE039F392F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEAD5446-7F4F-47BE-8004-AE039F392F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BEAD5446-7F4F-47BE-8004-AE039F392F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BEAD5446-7F4F-47BE-8004-AE039F392F95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AC6F25F-C570-45DF-9E97-D20F348FCC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AC6F25F-C570-45DF-9E97-D20F348FCC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AC6F25F-C570-45DF-9E97-D20F348FCC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AC6F25F-C570-45DF-9E97-D20F348FCC19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92FCF514-85EC-45F9-AEAA-01F2B9DA2115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92FCF514-85EC-45F9-AEAA-01F2B9DA2115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92FCF514-85EC-45F9-AEAA-01F2B9DA2115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92FCF514-85EC-45F9-AEAA-01F2B9DA2115}.Release|Any CPU.Build.0 = Release|Any CPU
 		{188FE002-AFB9-4808-BB8F-7EE6B26E374F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{188FE002-AFB9-4808-BB8F-7EE6B26E374F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{188FE002-AFB9-4808-BB8F-7EE6B26E374F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

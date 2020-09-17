@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FamillyTaskFramework\FamillyTask.DAL\FamillyTask.DAL.csproj" />
-    <ProjectReference Include="..\..\FamillyTaskFramework\FamillyTask.Models\FamillyTask.Models.csproj" />
+    <ProjectReference Include="..\FamillyTask.DAL\FamillyTask.DAL.csproj" />
+    <ProjectReference Include="..\FamillyTask.Models\FamillyTask.Models.csproj" />
   </ItemGroup>
 
 
