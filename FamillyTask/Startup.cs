@@ -72,7 +72,7 @@ namespace FamillyTask
                 });
             });
 
-
+            services.AddCors();
             services.AddControllers().AddNewtonsoftJson();
 
             //Add JWT Authentication
