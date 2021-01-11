@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
@@ -122,7 +123,14 @@ namespace FamillyTask.DAL
                 data.ParameterName = item.Name;
                 data.DbType = TypeConvertor.ToDbType(item.PropertyType);
                 data.Value = item.GetValue(toAdd) is null ? DBNull.Value : item.GetValue(toAdd);
-
+                if (data.DbType == DbType.DateTime)
+                {
+                    if (data.Value.ToString() == DateTime.MinValue.ToString())
+                    {
+                        
+                        data.Value = SqlDateTime.MinValue;
+                    }
+                }
                 cmd.Parameters.Add(data);
 
             }

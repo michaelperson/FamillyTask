@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using FamillyTask.DAL.Interface;
 using FamillyTask.DAL.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace FamillyTask
@@ -34,7 +37,7 @@ namespace FamillyTask
             /*Injection de dépendance*/
             services.Add(new ServiceDescriptor(typeof(IMembreService), new MembreService(Cnstr)));
             services.Add(new ServiceDescriptor(typeof(ITacheService), new TacheService(Cnstr)));
-
+            services.Add(new ServiceDescriptor(typeof(IUsersService), new UsersService(Cnstr)));
             /*Swagger*/
             services.AddSwaggerGenNewtonsoftSupport();
             services.AddSwaggerGen(swagger =>
@@ -43,11 +46,60 @@ namespace FamillyTask
                 swagger.DescribeAllParametersInCamelCase(); 
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "Family Task API" });
                 swagger.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "FamillyTask.xml"));
-                
+                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+                });
+                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                }
+                            },
+                            new string[] {}
+
+                    }
+                });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder => builder.AllowAnyOrigin());
+            });
+            services.AddControllers().AddNewtonsoftJson();
 
-            services.AddControllers().AddNewtonsoftJson(); 
+            //Add JWT Authentication
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            })
+                    .AddJwtBearer(options =>
+                    {
+                        options.SaveToken = true;
+                        options.TokenValidationParameters = new TokenValidationParameters()
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = Configuration["jwt:issuer"],
+                            ValidAudience = Configuration["jwt:issuer"],
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.Configuration["jwt:key"]))
+                        };
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +119,8 @@ namespace FamillyTask
 
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
